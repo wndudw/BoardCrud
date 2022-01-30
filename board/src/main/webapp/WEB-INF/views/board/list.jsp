@@ -21,6 +21,15 @@
 	
 	<tbody>
 	
+		<c:forEach items="${list}" var="list">
+			<tr>
+				<td>${list.bno}</td>
+				<td>${list.title}</td>
+				<td>${list.bdate}</td>
+				<td>${list.writer}</td>
+				<td>${list.views}</td>
+			</tr>
+		</c:forEach>
 	</tbody>
 	
 </table>
