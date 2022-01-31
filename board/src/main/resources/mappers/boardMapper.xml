@@ -28,4 +28,15 @@
 	FROM TBL_BOARD
 	WHERE BNO = #{bno}
 </select>
+
+<!-- 게시글 수정 -->
+<update id="modify" parameterType="com.board.domain.BoardVo">
+	UPDATE TBL_BOARD
+    SET TITLE = #{title},
+        CONTENTS = #{contents},
+        WRITER = #{writer}
+    WHERE BNO = #{bno}
+</update>
+
+
 </mapper>

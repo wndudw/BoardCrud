@@ -14,4 +14,7 @@ public interface BoardService {
 	
 	//게시글 조회
 	public BoardVo view(int bno) throws Exception;
+	
+	//게시글 수정
+	public void modify(BoardVo vo) throws Exception;
 }

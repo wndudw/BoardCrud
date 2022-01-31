@@ -62,7 +62,24 @@ public class BoardController {
 		
 	}
 	
+	//게시글 수정 화면 이동 ( 데이터 내용들도 같이 나오게 처리)
+	@GetMapping("/modify")
+	public void getModify(@RequestParam("bno") int bno, Model model) throws Exception {
+		
+		BoardVo vo = service.view(bno);
+		
+		model.addAttribute("view", vo);
+	}
 	
+	//게시글 수정 구현 
+	@PostMapping("/modify")
+	public String postModify(BoardVo vo) throws Exception {
+		
+		service.modify(vo);
+		
+		return "redirect:/board/view?bno=" + vo.getBno();
+		
+	}
 	
 	
 	

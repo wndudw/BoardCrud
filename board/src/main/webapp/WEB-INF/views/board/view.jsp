@@ -6,8 +6,7 @@
 <title>게시물 조회</title>
 </head>
 <body>
-	<!-- <form> : DB에 입력할수 있는 기능  -->
-	<form action="" method="post">
+	
 		<label>제목</label>
 		${view.title} <br />
 		
@@ -17,7 +16,8 @@
 		<label>내용</label><br />
 		${view.contents}<br />
 		
-		<!-- <button type="submit">작성</button>  -->
-	</form>
+		<div>
+			<a href="/board/modify?bno=${view.bno}">게시글 수정</a>
+		</div>
 </body>
 </html>
