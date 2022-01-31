@@ -17,4 +17,7 @@ public interface BoardService {
 	
 	//게시글 수정
 	public void modify(BoardVo vo) throws Exception;
+	
+	//게시글 삭제
+	public void delete(int bno) throws Exception;
 }

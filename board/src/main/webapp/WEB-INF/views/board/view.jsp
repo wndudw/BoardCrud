@@ -21,7 +21,7 @@
 		${view.contents}<br />
 		
 		<div>
-			<a href="/board/modify?bno=${view.bno}">게시글 수정</a>
+			<a href="/board/modify?bno=${view.bno}">게시글 수정</a>, <a href="/board/delete?bno=${view.bno}">게시글 삭제</a>
 		</div>
 </body>
 </html>

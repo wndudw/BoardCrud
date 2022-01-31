@@ -82,5 +82,11 @@ public class BoardController {
 	}
 	
 	
-	
+	//게시글 삭제
+	@GetMapping("/delete")
+	public String getDelete(@RequestParam("bno") int bno) throws Exception{
+		service.delete(bno);
+		
+		return "redirect:/board/list";
+	}
 }
