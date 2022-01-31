@@ -30,4 +30,10 @@ public class BoardServiceImpl implements BoardService {
 	
 	}
 
+	@Override
+	public BoardVo view(int bno) throws Exception {
+		
+		return dao.view(bno);
+	}
+
 }

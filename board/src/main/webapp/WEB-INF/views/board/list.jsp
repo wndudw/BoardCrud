@@ -24,7 +24,9 @@
 		<c:forEach items="${list}" var="list">
 			<tr>
 				<td>${list.bno}</td>
-				<td>${list.title}</td>
+				<td>
+					<a href="/board/view?bno=${list.bno}">${list.title}</a>
+				</td>
 				<td>${list.bdate}</td>
 				<td>${list.writer}</td>
 				<td>${list.views}</td>

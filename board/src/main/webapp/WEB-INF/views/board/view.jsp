@@ -3,21 +3,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>게시물 작성</title>
+<title>게시물 조회</title>
 </head>
 <body>
 	<!-- <form> : DB에 입력할수 있는 기능  -->
 	<form action="" method="post">
 		<label>제목</label>
-		<input type="text" name="title" /><br />
+		${view.title} <br />
 		
 		<label>작성자</label>
-		<input type="text" name="writer" /><br />
+		${view.writer}<br />
 		
-		<label>내용</label>
-		<textarea rows="5" cols="50" name="contents"></textarea>
+		<label>내용</label><br />
+		${view.contents}<br />
 		
-		<button type="submit">작성</button>
+		<!-- <button type="submit">작성</button>  -->
 	</form>
 </body>
 </html>

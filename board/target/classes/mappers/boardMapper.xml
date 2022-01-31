@@ -5,14 +5,14 @@
 <mapper namespace="com.board.mappers.board">
 
 <!-- 게시글 목록 -->
-<!-- id: 매퍼내에서 쿼리를 구분짓는 고유한 이름  // resultType: 쿼리의 결과 형태  // 실행의 결과가 있을때 사용-->
+<!-- id: 매퍼내에서 쿼리를 구분짓는 고유한 이름  // resultType: 쿼리의 결과 형태  // 실행의 결과가 있을때 사용 // 매퍼가 내보내는 데이터-->
 <select id="list" resultType="com.board.domain.BoardVo">
 	SELECT bno, title, contents, writer, bdate, views 
 	FROM TBL_BOARD
 </select>
 
 <!-- 게시글 작성  -->
-<!-- parameterType :  데이터를 넣을때 사용-->
+<!-- parameterType :  데이터를 넣을때 사용 // 매퍼에 들어오는 데이터 -->
 <insert id="write" parameterType="com.board.domain.BoardVo">
 	<selectKey keyProperty="bno" resultType="int" order="BEFORE">
 		SELECT BOARD_SEQ.NEXTVAL FROM DUAL
@@ -20,4 +20,12 @@
 		INSERT INTO TBL_BOARD(BNO, TITLE, CONTENTS, WRITER)
 		VALUES (#{bno}, #{title}, #{contents}, #{writer})
 </insert>
+
+<!-- 게시글 조회 -->
+<!-- 정수형인 int(글번호)를 보내어(parameterType) 그 글번호의 정보를 BoardVo로 가져온다-->
+<select id="view" parameterType="int" resultType="com.board.domain.BoardVo">
+	SELECT BNO, TITLE, CONTENTS, WRITER, BDATE, VIEWS
+	FROM TBL_BOARD
+	WHERE BNO = #{bno}
+</select>
 </mapper>

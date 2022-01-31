@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.domain.BoardVo;
 import com.board.service.BoardService;
@@ -44,4 +45,25 @@ public class BoardController {
 		//redirect : 모든 작업을 마치고 /board/list로 바로 이동하겠다.
 		return "redirect:/board/list";
 	}
+	
+	//게시글 조회
+	@GetMapping("/view")
+	/*
+	 * 글번호를 받아서 게시글을 조회하기 때문에
+	 * @RequestParam을 이용하면 특정값을 가져올수 있다
+	 * 그 특정값을 찾아 int bno에 넣어주고 
+	 * Model을 이용하여 뷰(view)에 데이터를 넘겨준다.*/
+	public void getView(@RequestParam("bno") int bno, Model model) throws Exception{
+		
+		BoardVo vo = service.view(bno);
+		
+		//model의 이름은 "view"
+		model.addAttribute("view", vo);
+		
+	}
+	
+	
+	
+	
+	
 }

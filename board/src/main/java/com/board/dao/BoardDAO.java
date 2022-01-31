@@ -12,4 +12,7 @@ public interface BoardDAO {
 	//게시글 작성
 	public void write(BoardVo vo) throws Exception;
 	
+	//게시글 조회
+	public BoardVo view(int bno) throws Exception;
+	
 }
