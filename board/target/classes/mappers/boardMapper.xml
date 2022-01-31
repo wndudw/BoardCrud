@@ -5,9 +5,19 @@
 <mapper namespace="com.board.mappers.board">
 
 <!-- 게시글 목록 -->
-<!-- id: 매퍼내에서 쿼리를 구분짓는 고유한 이름  // resultType: 쿼리의 결과 형태 -->
+<!-- id: 매퍼내에서 쿼리를 구분짓는 고유한 이름  // resultType: 쿼리의 결과 형태  // 실행의 결과가 있을때 사용-->
 <select id="list" resultType="com.board.domain.BoardVo">
 	SELECT bno, title, contents, writer, bdate, views 
 	FROM TBL_BOARD
 </select>
+
+<!-- 게시글 작성  -->
+<!-- parameterType :  데이터를 넣을때 사용-->
+<insert id="write" parameterType="com.board.domain.BoardVo">
+	<selectKey keyProperty="bno" resultType="int" order="BEFORE">
+		SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+	</selectKey>
+		INSERT INTO TBL_BOARD(BNO, TITLE, CONTENTS, WRITER)
+		VALUES (#{bno}, #{title}, #{contents}, #{writer})
+</insert>
 </mapper>

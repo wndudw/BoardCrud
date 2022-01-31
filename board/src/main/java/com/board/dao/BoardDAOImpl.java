@@ -22,7 +22,18 @@ public class BoardDAOImpl implements BoardDAO {
 		 @Override
 		 public List list() throws Exception { 
 		  
+		/*
+		 * mapper는 각 매퍼를 구분하는 namesapce와 매퍼 하위에 쿼리문을 묶은 id로 구분된다.
+		 * dao에서 매퍼를 접근할때 namespace와 id모두 필요 이때, 이 둘을 구분하는게 . 이다
+		 */
 		  return sql.selectList(namespace + ".list");
 		 }
+
+		 
+		//게시글 작성
+		@Override
+		public void write(BoardVo vo) throws Exception {
+			sql.insert(namespace + ".write", vo);
+		}
 
 }

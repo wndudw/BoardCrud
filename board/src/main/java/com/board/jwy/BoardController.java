@@ -7,8 +7,10 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.board.domain.BoardVo;
 import com.board.service.BoardService;
 
 @Controller
@@ -32,5 +34,14 @@ public class BoardController {
 	@GetMapping("/write")
 	public void getWirte() throws Exception{
 		
+	}
+	
+	//게시글 작성 구현
+	@PostMapping("/write")
+	public String postWirte(BoardVo vo) throws Exception {
+		service.write(vo);
+		
+		//redirect : 모든 작업을 마치고 /board/list로 바로 이동하겠다.
+		return "redirect:/board/list";
 	}
 }
