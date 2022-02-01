@@ -57,7 +57,7 @@ public class BoardController {
 		
 		BoardVo vo = service.view(bno);
 		
-		//model의 이름은 "view"
+		//model의 이름은 "view"로 지정함.
 		model.addAttribute("view", vo);
 		
 	}
@@ -89,4 +89,28 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
+	
+	//페이징처리
+	@GetMapping("/listPage")
+	public void getListPage(Model model, @RequestParam(value = "num",defaultValue = "1") int num) throws Exception {
+		 
+		 // 게시물 총 갯수
+		 int count = service.count();
+		  
+		 // 한 페이지에 출력할 게시물 갯수
+		 int postNum = 10;
+		  
+		 // 게시글 시작 번호 구하기. ([ 게시물 총 갯수 ÷ 한 페이지에 출력할 갯수 ]의 올림)
+		 int pageNum = (int)Math.ceil((double)count/postNum);
+		  
+		 // 출력할 게시물
+		 //현재 페이지의 게시글 시작번호 = (현재 페이지번호 - 1) * 페이지당 보여줄 게시글 갯수
+		 int displayPost = (num-1) * postNum;
+		    
+		 List list = null; 
+		 list = service.listPage(displayPost, postNum);
+		 model.addAttribute("list", list);   
+		 model.addAttribute("pageNum", pageNum);
+		}
+
 }

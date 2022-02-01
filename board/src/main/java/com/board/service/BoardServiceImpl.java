@@ -30,6 +30,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	}
 
+	//게시글 조회
 	@Override
 	public BoardVo view(int bno) throws Exception {
 		
@@ -49,6 +50,22 @@ public class BoardServiceImpl implements BoardService {
 	public void delete(int bno) throws Exception {
 		
 		dao.delete(bno);
+	}
+
+//	@Override
+//	public List<BoardVo> listPage(Criteria cri) throws Exception {
+//		
+//		return dao.listPage(cri);
+//	}
+
+	@Override
+	public int count() throws Exception {
+		return dao.count();
+	}
+
+	@Override
+	public List listPage(int displayPost, int postNum) throws Exception {
+		return dao.listPage(displayPost, postNum);
 	}
 
 }

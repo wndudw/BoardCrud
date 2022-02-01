@@ -9,6 +9,7 @@
 <select id="list" resultType="com.board.domain.BoardVo">
 	SELECT bno, title, contents, writer, bdate, views 
 	FROM TBL_BOARD
+	ORDER BY BNO DESC
 </select>
 
 <!-- 게시글 작성  -->
@@ -22,7 +23,7 @@
 </insert>
 
 <!-- 게시글 조회 -->
-<!-- 정수형인 int(글번호)를 보내어(parameterType) 그 글번호의 정보를 BoardVo로 가져온다-->
+<!-- 정수형인 int(글번호)를 보내어(parameterType) 그 글번호의 정보를 BoardVo객체 형태로 저장된다(resultType)-->
 <select id="view" parameterType="int" resultType="com.board.domain.BoardVo">
 	SELECT BNO, TITLE, CONTENTS, WRITER, BDATE, VIEWS
 	FROM TBL_BOARD
@@ -43,4 +44,20 @@
 	DELETE FROM TBL_BOARD
 	WHERE BNO = #{bno}
 </delete>
+
+<!-- 게시물 총 갯수 -->
+<select id="count" resultType="int">
+	SELECT COUNT(BNO)FROM TBL_BOARD
+</select>
+
+<!-- 페이징 처리  -->
+<select id="listPage" resultType="com.board.domain.BoardVo" parameterType="hashMap">
+	SELECT BNO,TITLE,CONTENTS,WRITER,BDATE,VIEWS
+	FROM ( SELECT BNO, TITLE, CONTENTS, WRITER, BDATE, VIEWS,
+        ROW_NUMBER() OVER (ORDER BY BNO DESC) AS RNUM
+        FROM TBL_BOARD
+    ) MB
+    WHERE RNUM BETWEEN #{displayPost} AND #{postNum}
+</select>
+
 </mapper>

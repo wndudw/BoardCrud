@@ -15,5 +15,6 @@
 
 <p><a href="/board/list">게시글 목록</a></p>
 <p><a href="/board/write">게시글 작성</a></p>
+<p><a href="/board/listPage">목록 + 페이징</a></p>
 </body>
 </html>
