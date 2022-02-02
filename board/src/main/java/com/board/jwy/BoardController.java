@@ -100,13 +100,17 @@ public class BoardController {
 		 // 한 페이지에 출력할 게시물 갯수
 		 int postNum = 10;
 		  
-		 // 게시글 시작 번호 구하기. ([ 게시물 총 갯수 ÷ 한 페이지에 출력할 갯수 ]의 올림)
+		 // 화면 화단에 표시할 페이징 번호 구하기 .  ([ 게시물 총 갯수 ÷ 한 페이지에 출력할 갯수 ]의 올림)
 		 int pageNum = (int)Math.ceil((double)count/postNum);
 		  
-		 // 출력할 게시물
-		 //현재 페이지의 게시글 시작번호 = (현재 페이지번호 - 1) * 페이지당 보여줄 게시글 갯수
-		 int displayPost = (num-1) * postNum;
-		    
+		 //현재 페이지 기준으로 10개의 데이터 구하기.
+		 // ((현재페이지번호 - 1) * 출력할 게시글 갯수 ) + 1
+		 int displayPost = ((num -1) * postNum) + 1;
+		 
+		 // 화면 이동마다 10개씩 데이터 출력을 위해 다시 postNum을 초기화 후 페이징번호 * 10을 구함.
+		 postNum = 0;
+		 postNum = 10*(num);
+		 
 		 List list = null; 
 		 list = service.listPage(displayPost, postNum);
 		 model.addAttribute("list", list);   

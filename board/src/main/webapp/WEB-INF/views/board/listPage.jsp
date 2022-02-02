@@ -44,6 +44,7 @@
 </table>
 
 <div>
+ <!-- 1부터 ${pageNum}의 갯수까지 html에 나타낸다.  -->
  <c:forEach begin="1" end="${pageNum}" var="num">
     <span>
      <a href="/board/listPage?num=${num}">${num}</a>
