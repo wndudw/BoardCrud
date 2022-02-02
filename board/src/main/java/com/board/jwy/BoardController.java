@@ -111,10 +111,45 @@ public class BoardController {
 		 postNum = 0;
 		 postNum = 10*(num);
 		 
+		 ///////////////// 하단 페이징 번호 10개씩만 출력 처리 .////////////////////
+		 
+		 // 한번에 표시할 페이징 번호의 갯수
+		 int pageNum_cnt = 10;
+		 
+		 // 10개씩 하단에 표시되는 페이지 번호 중 마지막 번호 (*** 1차 계산 ***)
+		 // 마지막 페이징 번호 = ((올림)(현재 페이지 번호 / 한번에 표시할 페이지 번호의 갯수)) * 한번에 표시할 페이지 번호의 갯수
+		 int endPageNum = (int)(Math.ceil((double)num / (double)pageNum_cnt) * pageNum_cnt);
+		 
+		 // 표시되는 페이징 번호중 첫번째 번호
+		 int startPageNum = endPageNum - (pageNum_cnt - 1);
+		 
+		 //하단 페이징 마지막 번호 재계산  (*** 2차 계산 ***)
+		 int endPageNum_tmp = (int)(Math.ceil((double)count / (double)pageNum_cnt));
+		 	// 현재 페이징 번호(1차계산)가  하단에 표시될 마지막번호(2차계산)보다 크면 2차로 계산한 값을 넣어준다.
+		 if(endPageNum > endPageNum_tmp) {
+		  endPageNum = endPageNum_tmp;
+		 }
+		 
+		 //이전버튼을 만들기 위한.. 
+		 boolean prev = startPageNum == 1 ? false : true;
+		 //다음버튼 만들기 위한..
+		 boolean next = endPageNum * pageNum_cnt >= count ? false : true;
+		 
 		 List list = null; 
 		 list = service.listPage(displayPost, postNum);
 		 model.addAttribute("list", list);   
 		 model.addAttribute("pageNum", pageNum);
-		}
+		 
+		 // 시작 및 끝 번호
+		 model.addAttribute("startPageNum", startPageNum);
+		 model.addAttribute("endPageNum", endPageNum);
+		 
+		 // 이전 및 다음
+		 model.addAttribute("prev", prev);
+		 model.addAttribute("next", next);
+		 
+		 // 현재페이지
+		 model.addAttribute("select", num);
+		 }
 
 }
