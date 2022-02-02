@@ -46,13 +46,13 @@
 <div>
 	<!-- test: 속성 EL의 결과가 참이면 실행.  -->
 	<c:if test="${page.prev}">
-		<span>[<a href="/board/listPage?num=${page.startPageNum -1}">이전</a>]</span>
+		<span>[<a href="/board/listPageSearch?num=${page.startPageNum -1}">이전</a>]</span>
 	</c:if>
 	
 	<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
 		<span>
 			<c:if test="${select != num}">
-				<a href="/board/listPage?num=${num}">${num}</a>
+				<a href="/board/listPageSearch?num=${num}">${num}</a>
 			</c:if>
 			
 			<c:if test="${select == num}">
@@ -62,21 +62,25 @@
 	</c:forEach>
 	
 	<c:if test="${page.next}">
-		<span>[<a href="/board/listPage?num=${page.endPageNum + 1}">다음</a>]</span>
+		<span>[<a href="/board/listPageSearch?num=${page.endPageNum + 1}">다음</a>]</span>
 	</c:if>
+
+	<div>
+		<select name="searchType">
+			<option value="title">제목</option>
+			<option value="content">내용</option>
+			<option value="title_content">제목+내용</option>
+			<option value="writer">작성자</option>
+		</select>
+		
+		<input type="text" name="keyword" />
+		
+		<button type="button">검색</button>
+	</div>
+
 </div>
 
 
-<%-- 페이징 번호가 쭈욱 나열되게 구현한것.
-<div>
- <!-- 1부터 ${pageNum}의 갯수까지 html에 나타낸다.  -->
- <c:forEach begin="1" end="${pageNum}" var="num">
-    <span>
-     <a href="/board/listPage?num=${num}">${num}</a>
-  </span>
- </c:forEach>
-</div>
---%>
 
 </body>
 </html>

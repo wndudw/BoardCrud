@@ -6,15 +6,9 @@
 	<title>Home</title>
 </head>
 <body>
-
-<h1>
-	Hello world!  
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
-
 <p><a href="/board/list">게시글 목록</a></p>
 <p><a href="/board/write">게시글 작성</a></p>
 <p><a href="/board/listPage">목록 + 페이징</a></p>
+<p><a href="/board/listPageSearch?num=1">목록 + 검색</a> </p>
 </body>
 </html>

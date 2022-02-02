@@ -60,4 +60,12 @@
     WHERE RNUM BETWEEN #{displayPost} AND #{postNum}
 </select>
 
+<!-- 게시글 검색 -->
+<select id="listPageSearch" parameterType="hasMap" resultType="com.board.domain.BoardVo">
+	<![CDATA[
+	
+	
+	]]>
+</select>
+
 </mapper>
