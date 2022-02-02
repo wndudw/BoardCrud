@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.domain.BoardVo;
+import com.board.domain.Page;
 import com.board.service.BoardService;
 
 @Controller
@@ -94,6 +95,31 @@ public class BoardController {
 	@GetMapping("/listPage")
 	public void getListPage(Model model, @RequestParam(value = "num",defaultValue = "1") int num) throws Exception {
 		 
+		Page page = new Page();
+		
+		page.setNum(num);
+		page.setCount(service.count());
+		
+	    List<BoardVo> list = null;
+	    list = service.listPage(page.getDisplayPost(), page.getPostNum());
+	    
+	    model.addAttribute("list", list);  
+	    
+	    /* Page 클래스가 있으므로 하나로 모델처리함.
+		model.addAttribute("pageNum", page.getPageNum());
+		
+		model.addAttribute("startPageNum", page.getStartPageNum());
+		model.addAttribute("endPageNum", page.getEndPageNum());
+		 
+		model.addAttribute("prev", page.getPrev());
+		model.addAttribute("next", page.getNext());  
+		*/
+	    
+	    model.addAttribute("page", page);
+		model.addAttribute("select", num);
+		
+		
+		/* Page 클래스를 만들지 않고  페이징 처리 하는 방법.
 		 // 게시물 총 갯수
 		 int count = service.count();
 		  
@@ -103,7 +129,7 @@ public class BoardController {
 		 // 화면 화단에 표시할 페이징 번호 구하기 .  ([ 게시물 총 갯수 ÷ 한 페이지에 출력할 갯수 ]의 올림)
 		 int pageNum = (int)Math.ceil((double)count/postNum);
 		  
-		 //현재 페이지 기준으로 10개의 데이터 구하기.
+		 //현재 페이지 기준으로 10개의 게시글 구하기.
 		 // ((현재페이지번호 - 1) * 출력할 게시글 갯수 ) + 1
 		 int displayPost = ((num -1) * postNum) + 1;
 		 
@@ -150,6 +176,7 @@ public class BoardController {
 		 
 		 // 현재페이지
 		 model.addAttribute("select", num);
+		 */
 		 }
 
 }
