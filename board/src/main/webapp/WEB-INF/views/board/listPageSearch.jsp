@@ -75,10 +75,21 @@
 		
 		<input type="text" name="keyword" />
 		
-		<button type="button">검색</button>
+		<button type="button" id="searchBtn">검색</button>
 	</div>
 
 </div>
+
+<script type="text/javascript">
+	document.getElementById("searchBtn").onclick = function(){
+
+		let searchType = document.getElementsByName("searchType")[0].value;
+		let keyword = document.getElementsByName("keyword")[0].value;
+
+		console.log(searchType)
+		console.log(keyword)
+		};
+</script>
 
 
 

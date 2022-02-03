@@ -165,8 +165,8 @@ public class BoardController {
 
 	// 검색
 	@GetMapping("/listPageSearch")
-	public void geListPageSearch(Model model, @RequestParam(value = "num", defaultValue = "1") int num, @RequestParam("searchType") String searchType,
-								  @RequestParam("keyword") String keyword)
+	public void geListPageSearch(Model model, @RequestParam(value = "num", defaultValue = "1") int num, @RequestParam(value="searchType", required=false, defaultValue = "title") String searchType,
+								  @RequestParam(value="keyword", required=false, defaultValue = "") String keyword)
 			throws Exception {
 
 		Page page = new Page();
