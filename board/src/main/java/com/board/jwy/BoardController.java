@@ -165,7 +165,8 @@ public class BoardController {
 
 	// 검색
 	@GetMapping("/listPageSearch")
-	public void geListPageSearch(Model model, @RequestParam(value = "num", defaultValue = "1") int num)
+	public void geListPageSearch(Model model, @RequestParam(value = "num", defaultValue = "1") int num, @RequestParam("searchType") String searchType,
+								  @RequestParam("keyword") String keyword)
 			throws Exception {
 
 		Page page = new Page();
@@ -174,7 +175,8 @@ public class BoardController {
 		page.setCount(service.count());
 
 		List<BoardVo> list = null;
-		list = service.listPage(page.getDisplayPost(), page.getPostNum());
+		//list = service.listPage(page.getDisplayPost(), page.getPostNum());
+		list = service.listPageSearch(page.getDisplayPost(), page.getPostNum(), searchType, keyword);
 
 		model.addAttribute("list", list);
 

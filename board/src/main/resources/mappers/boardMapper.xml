@@ -61,11 +61,29 @@
 </select>
 
 <!-- 게시글 검색 -->
-<select id="listPageSearch" parameterType="hasMap" resultType="com.board.domain.BoardVo">
-	<![CDATA[
-	
-	
-	]]>
+<select id="listPageSearch" resultType="com.board.domain.BoardVo" parameterType="hashMap">
+	SELECT BNO,TITLE,CONTENTS,WRITER,BDATE,VIEWS
+	FROM ( SELECT BNO, TITLE, CONTENTS, WRITER, BDATE, VIEWS,
+        ROW_NUMBER() OVER (ORDER BY BNO DESC) AS RNUM
+        FROM TBL_BOARD
+        
+        <if test='searchType.equals("title")'>
+        	WHERE TITLE LIKE '%'|| #{keyword} ||'%' 
+        </if>
+        	
+        <if test='searchType.equals("content")'>
+        	WHERE CONTENTS LIKE '%'|| #{keyword} ||'%'
+        </if>
+        
+        <if test='searchType.equals("title_content")'>
+        	WHERE TITLE LIKE '%'|| #{keyword} ||'%' OR (CONTENTS '%'|| #{keyword} ||'%')
+        </if>
+        
+        <if test='searchType.equals("writer")'>
+        	WHERE WRITER LIKE '%'|| #{keyword} ||'%'
+        </if>
+    ) MB
+    WHERE RNUM BETWEEN #{displayPost} AND #{postNum}
 </select>
 
 </mapper>

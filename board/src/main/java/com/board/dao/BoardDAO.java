@@ -30,4 +30,7 @@ public interface BoardDAO {
 	//목록 +페이징 처리
 	public List listPage(int displayPost, int postNum) throws Exception;
 	
+	
+	//검색
+	public List<BoardVo> listPageSearch(int displayPost, int postNum, String searchType, String keyword) throws Exception;
 }
