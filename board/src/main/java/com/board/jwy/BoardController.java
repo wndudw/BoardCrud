@@ -164,8 +164,8 @@ public class BoardController {
 	}
 
 	// 검색
-	@GetMapping("/listPageSearch")
-	public void geListPageSearch(Model model, @RequestParam(value = "num", defaultValue = "1") int num, @RequestParam(value="searchType", required=false, defaultValue = "title") String searchType,
+	@GetMapping("/listPageSearch") // required : 해당 데이터의 필수 여부  , defaultValue : 만약 데이터가 들어오지 않았을 경우 대신할  기본값.
+	public void getLastPageSearch(Model model, @RequestParam(value = "num", defaultValue = "1") int num, @RequestParam(value="searchType", required=false, defaultValue = "title") String searchType,
 								  @RequestParam(value="keyword", required=false, defaultValue = "") String keyword)
 			throws Exception {
 
