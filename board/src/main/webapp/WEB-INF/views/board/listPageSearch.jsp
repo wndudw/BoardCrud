@@ -89,7 +89,7 @@
 		console.log(searchType)
 		console.log(keyword)
 
-		//location.href =[url] : 해당 url로 이동하는 기능.
+		//location.href =[url] : 해당 url로 이동하는 기능..
 		location.href = "/board/listPageSearch?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
 		};
 </script>
